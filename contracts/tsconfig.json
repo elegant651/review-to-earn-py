@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2021",
+    "outDir": "dist",
+    "types": ["node", "hardhat"]
+  },
+  "include": [
+    "./hardhat.config.ts",
+    "./scripts",
+    "./test",
+    "./**/*.sol"
+  ]
+}

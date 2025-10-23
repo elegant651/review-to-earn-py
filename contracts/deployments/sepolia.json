@@ -1,0 +1,8 @@
+{
+  "network": "sepolia",
+  "factoryAddress": "0xEa18565e5eCd7667caC68538945C22d1CACEd8a8",
+  "pyusdToken": "0xcac524bca292aaade2df8a05cc58f0a65b1b3bb9",
+  "deployer": "0xBB9C411B530408ad4D3afB99f84FcbBd9E490662",
+  "timestamp": "2025-10-23T03:04:03.611Z",
+  "blockNumber": 9470145
+}

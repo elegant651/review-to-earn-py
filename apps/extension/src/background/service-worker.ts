@@ -115,7 +115,7 @@ function estimateSentiment(text: string): number {
 }
 
 function isEligible(score: ReviewScore): boolean {
-  return true //score.quality >= QUALITY_THRESHOLD && score.spam <= SPAM_THRESHOLD;
+  return score.quality >= QUALITY_THRESHOLD && score.spam <= SPAM_THRESHOLD;
 }
 
 async function getBackendUrl(): Promise<string> {
