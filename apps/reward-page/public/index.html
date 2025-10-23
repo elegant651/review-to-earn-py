@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claim Your PYUSD Reward - Review-to-Earn</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+        padding: 2.5rem;
+      }
+      h1 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      .subtitle {
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+      .info-card {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+      .info-row:last-child {
+        margin-bottom: 0;
+      }
+      .info-label {
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .info-value {
+        color: #111827;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .score-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: #10b981;
+        color: white;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+      .wallet-section {
+        margin-bottom: 1.5rem;
+      }
+      .wallet-address {
+        background: #f3f4f6;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 0.875rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        color: #374151;
+        word-break: break-all;
+        margin-top: 0.5rem;
+      }
+      .btn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        margin-bottom: 0.75rem;
+      }
+      .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .btn-secondary {
+        background: #f3f4f6;
+        color: #374151;
+      }
+      .btn-secondary:hover {
+        background: #e5e7eb;
+      }
+      .status-message {
+        padding: 0.875rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        display: none;
+      }
+      .status-message.show {
+        display: block;
+      }
+      .status-info {
+        background: #dbeafe;
+        color: #1e40af;
+        border: 1px solid #93c5fd;
+      }
+      .status-success {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #6ee7b7;
+      }
+      .status-error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .loading-spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      .tx-link {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+        word-break: break-all;
+      }
+      .tx-link:hover {
+        text-decoration: underline;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎉 Claim Your Reward</h1>
+      <p class="subtitle">Connect your wallet to receive PYUSD for your helpful review</p>
+
+      <div class="info-card">
+        <div class="info-row">
+          <span class="info-label">Review Score</span>
+          <span class="score-badge" id="score-value">Loading...</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Reward Amount</span>
+          <span class="info-value" id="reward-amount">Loading...</span>
+        </div>
+      </div>
+
+      <div id="status" class="status-message"></div>
+
+      <div id="wallet-section" class="wallet-section hidden">
+        <div class="info-label">Connected Wallet</div>
+        <div class="wallet-address" id="wallet-address"></div>
+      </div>
+
+      <button id="connect-btn" class="btn btn-primary">
+        Connect MetaMask
+      </button>
+
+      <button id="claim-btn" class="btn btn-primary hidden" disabled>
+        <span class="loading-spinner"></span>
+        Processing...
+      </button>
+
+      <button id="back-btn" class="btn btn-secondary">
+        Go Back
+      </button>
+    </div>
+
+    <script>
+      // Configuration
+      const BACKEND_URL = 'http://localhost:8787'; // Update this to your deployed backend URL
+
+      // State
+      let connectedAddress = null;
+      let rewardParams = null;
+
+      // DOM elements
+      const connectBtn = document.getElementById('connect-btn');
+      const claimBtn = document.getElementById('claim-btn');
+      const backBtn = document.getElementById('back-btn');
+      const statusDiv = document.getElementById('status');
+      const walletSection = document.getElementById('wallet-section');
+      const walletAddressDiv = document.getElementById('wallet-address');
+      const scoreValueSpan = document.getElementById('score-value');
+      const rewardAmountSpan = document.getElementById('reward-amount');
+
+      // Initialize page
+      async function init() {
+        // Get reward parameters from URL
+        const params = new URLSearchParams(window.location.search);
+        const review = params.get('review');
+        const scoreStr = params.get('score');
+
+        if (!review || !scoreStr) {
+          showStatus('Invalid reward parameters. Please try again.', 'error');
+          connectBtn.disabled = true;
+          return;
+        }
+
+        const score = parseFloat(scoreStr);
+        rewardParams = { review, score };
+
+        // Display score and reward amount
+        scoreValueSpan.textContent = score.toFixed(2);
+        rewardAmountSpan.textContent = '0.01 PYUSD'; // You can make this dynamic based on score
+
+        // Check if MetaMask is installed
+        if (!window.ethereum) {
+          showStatus('MetaMask is not installed. Please install MetaMask extension.', 'error');
+          connectBtn.disabled = true;
+          connectBtn.textContent = 'MetaMask Not Found';
+          return;
+        }
+
+        // Check if already connected
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+          if (accounts && accounts.length > 0) {
+            handleWalletConnected(accounts[0]);
+          }
+        } catch (error) {
+          console.error('Failed to check existing connection:', error);
+        }
+      }
+
+      // Connect MetaMask
+      async function connectMetaMask() {
+        try {
+          connectBtn.disabled = true;
+          connectBtn.innerHTML = '<span class="loading-spinner"></span> Connecting...';
+
+          const accounts = await window.ethereum.request({
+            method: 'eth_requestAccounts'
+          });
+
+          if (!accounts || accounts.length === 0) {
+            showStatus('No accounts found. Please create a MetaMask account.', 'error');
+            resetConnectButton();
+            return;
+          }
+
+          handleWalletConnected(accounts[0]);
+        } catch (error) {
+          console.error('MetaMask connection error:', error);
+          if (error.code === 4001) {
+            showStatus('Connection rejected. Please approve the MetaMask request.', 'error');
+          } else {
+            showStatus('Failed to connect to MetaMask. Please try again.', 'error');
+          }
+          resetConnectButton();
+        }
+      }
+
+      // Handle successful wallet connection
+      function handleWalletConnected(address) {
+        connectedAddress = address;
+        walletAddressDiv.textContent = address;
+        walletSection.classList.remove('hidden');
+        connectBtn.classList.add('hidden');
+        showStatus('Wallet connected! Click below to sign and claim your reward.', 'success');
+
+        // Show claim button
+        claimBtn.classList.remove('hidden');
+        claimBtn.disabled = false;
+        claimBtn.innerHTML = 'Sign & Claim Reward';
+        claimBtn.onclick = claimReward;
+      }
+
+      // Reset connect button
+      function resetConnectButton() {
+        connectBtn.disabled = false;
+        connectBtn.textContent = 'Connect MetaMask';
+      }
+
+      // Claim reward
+      async function claimReward() {
+        if (!connectedAddress || !rewardParams) {
+          showStatus('Missing wallet or reward parameters.', 'error');
+          return;
+        }
+
+        try {
+          claimBtn.disabled = true;
+          claimBtn.innerHTML = '<span class="loading-spinner"></span> Requesting signature...';
+
+          // Create message to sign
+          const message = `Sign this message to verify your wallet ownership and claim your PYUSD reward.\n\nAddress: ${connectedAddress}\nScore: ${rewardParams.score}\nTimestamp: ${Date.now()}`;
+
+          // Request signature
+          const signature = await window.ethereum.request({
+            method: 'personal_sign',
+            params: [message, connectedAddress]
+          });
+
+          showStatus('Signature received. Sending reward request...', 'info');
+          claimBtn.innerHTML = '<span class="loading-spinner"></span> Processing reward...';
+
+          // Send reward request to backend
+          const response = await fetch(`${BACKEND_URL}/reward`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              address: connectedAddress,
+              signature,
+              review: rewardParams.review,
+              score: rewardParams.score
+            })
+          });
+
+          const data = await response.json();
+          console.log('Reward response:', data);
+
+          if (response.ok && data.txHash) {
+            showStatus(
+              `🎉 Reward sent successfully! <br><a href="https://sepolia.etherscan.io/tx/${data.txHash}" target="_blank" class="tx-link">View transaction</a>`,
+              'success'
+            );
+            claimBtn.innerHTML = '✓ Reward Claimed!';
+            claimBtn.disabled = true;
+            backBtn.textContent = 'Close';
+          } else {
+            const errorMsg = data.error || 'Unknown error';
+            showStatus(`Reward failed: ${errorMsg}`, 'error');
+            claimBtn.innerHTML = 'Sign & Claim Reward';
+            claimBtn.disabled = false;
+          }
+        } catch (error) {
+          console.error('Claim error:', error);
+          if (error.code === 4001) {
+            showStatus('Signature rejected. Please approve the signature request to claim your reward.', 'error');
+          } else {
+            showStatus(`Failed to claim reward: ${error.message || 'Unknown error'}`, 'error');
+          }
+          claimBtn.innerHTML = 'Sign & Claim Reward';
+          claimBtn.disabled = false;
+        }
+      }
+
+      // Show status message
+      function showStatus(message, type) {
+        statusDiv.innerHTML = message;
+        statusDiv.className = `status-message show status-${type}`;
+      }
+
+      // Go back
+      function goBack() {
+        window.history.back();
+      }
+
+      // Event listeners
+      connectBtn.addEventListener('click', connectMetaMask);
+      backBtn.addEventListener('click', goBack);
+
+      // Initialize on load
+      init();
+    </script>
+  </body>
+</html>

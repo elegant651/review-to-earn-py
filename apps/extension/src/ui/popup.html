@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Review-to-Earn</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 1rem;
+        color: #111827;
+      }
+      #score {
+        margin-top: 0.75rem;
+        display: grid;
+        gap: 0.5rem;
+      }
+      .score-item {
+        display: flex;
+        justify-content: space-between;
+      }
+      #tx-result {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        word-break: break-all;
+      }
+      #demo-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        border: none;
+        background: #2563eb;
+        color: #f9fafb;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Review-to-Earn</h1>
+    <button id="demo-link" type="button">Open sample shop demo</button>
+    <p id="status">Waiting for scoring…</p>
+    <div id="score"></div>
+    <div id="tx-result"></div>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sample Marketplace Listing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./sample-shop.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="product-card">
+        <div class="product-card__media" role="img" aria-label="Double-wall travel tumbler"></div>
+        <div class="product-card__details">
+          <h1 class="product-card__title">Aurora Stainless Travel Tumbler</h1>
+          <p class="product-card__subtitle">Keeps drinks hot for 12 hours · 20oz</p>
+          <p class="product-card__price">$24.95</p>
+          <button class="product-card__cta">Add to cart</button>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <header class="reviews__header">
+          <h2>Write a review</h2>
+          <p>Share what you love so other shoppers can earn, too.</p>
+        </header>
+        <form class="reviews__form">
+          <label for="sample-review-textarea">Your review</label>
+          <textarea
+            id="sample-review-textarea"
+            name="reviewText"
+            maxlength="1200"
+            rows="8"
+            placeholder="Tell the community how this product fits into your routine…"
+          ></textarea>
+
+          <label for="sample-review-title">Review title</label>
+          <input
+            id="sample-review-title"
+            type="text"
+            name="reviewTitle"
+            placeholder="What stands out about this tumbler?"
+          />
+
+          <fieldset class="reviews__ratings">
+            <legend>Star rating</legend>
+            <div role="radiogroup" aria-labelledby="rating-label">
+              <label><input type="radio" name="reviewRating" value="1" /> 1</label>
+              <label><input type="radio" name="reviewRating" value="2" /> 2</label>
+              <label><input type="radio" name="reviewRating" value="3" /> 3</label>
+              <label><input type="radio" name="reviewRating" value="4" /> 4</label>
+              <label><input type="radio" name="reviewRating" value="5" /> 5</label>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="./sample-shop.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.page {
+  max-width: 960px;
+  margin: 48px auto;
+  padding: 0 24px 96px;
+  display: grid;
+  gap: 32px;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.product-card__media {
+  background: linear-gradient(160deg, #818cf8 0%, #9333ea 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.product-card__details {
+  padding: 48px 40px;
+  display: grid;
+  gap: 12px;
+}
+
+.product-card__subtitle {
+  color: #6b7280;
+  margin: 0;
+}
+
+.product-card__price {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+.product-card__cta {
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: #f9fafb;
+  font-weight: 600;
+  cursor: pointer;
+  justify-self: start;
+}
+
+.reviews {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 24px;
+}
+
+.reviews__header h2 {
+  margin: 0 0 8px;
+}
+
+.reviews__header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.reviews__form {
+  display: grid;
+  gap: 16px;
+}
+
+.reviews__form label {
+  font-weight: 600;
+}
+
+.reviews__form textarea {
+  font: inherit;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 16px;
+  resize: vertical;
+}
+
+.reviews__form input[type="text"] {
+  font: inherit;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 12px;
+}
+
+.reviews__ratings {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.reviews__ratings legend {
+  padding: 0 8px;
+  font-weight: 600;
+}
+
+.reviews__ratings label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 12px;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .product-card {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card__details {
+    padding: 32px;
+  }
+}

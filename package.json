@@ -1,0 +1,14 @@
+{
+  "name": "r2e-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Review-to-Earn Chrome extension and backend monorepo",
+  "scripts": {
+    "build:all": "pnpm -r build",
+    "lint:all": "pnpm -r lint",
+    "test:all": "pnpm -r test"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

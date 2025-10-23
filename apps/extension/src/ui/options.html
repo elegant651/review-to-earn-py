@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>R2E Options</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 2rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Review-to-Earn Settings</h1>
+    <label>
+      Backend URL
+      <input id="backend-url" type="text" placeholder="http://localhost:8787" />
+    </label>
+    <button id="save">Save</button>
+    <p id="status"></p>
+    <script type="module" src="./options.ts"></script>
+  </body>
+</html>
