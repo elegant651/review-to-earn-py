@@ -211,9 +211,9 @@ async function scoreReview(): Promise<void> {
 
   if (result?.ok) {
     activeReview.latestScore = result.score as ReviewScore;
-    // const eligible =
-    //   activeReview.latestScore.quality >= 70 && activeReview.latestScore.spam <= 30;
-    const eligible = true;
+    const eligible =
+      activeReview.latestScore.quality >= 70 && activeReview.latestScore.spam <= 30;
+    // const eligible = true;
     button.disabled = !eligible;
     button.style.cursor = eligible ? "pointer" : "not-allowed";
     button.textContent = eligible ? "Earn PYUSD" : "Keep editing…";

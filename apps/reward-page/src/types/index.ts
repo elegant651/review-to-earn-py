@@ -1,6 +1,14 @@
+export interface ReviewScore {
+  quality: number;
+  spam: number;
+  sentiment: number;
+  explanation: string;
+}
+
 export interface RewardParams {
   review: string;
-  score: number;
+  score: ReviewScore;
+  campaignAddress?: string; // Optional: if from campaign
 }
 
 export interface RewardResponse {
@@ -8,6 +16,9 @@ export interface RewardResponse {
   txHash?: string;
   error?: string;
   status?: number;
+  campaignAddress?: string;
+  userAddress?: string;
+  reviewHash?: string;
 }
 
 export interface EthereumProvider {
