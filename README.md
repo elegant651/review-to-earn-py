@@ -1,6 +1,19 @@
 # Review-to-Earn (R2E)
+Review-to-Earn: AI-Powered PYUSD Micro-Incentives for Trustworthy Commerce
 
-Chrome extension + backend that rewards high-quality ecommerce reviews with PYUSD on the Sepolia testnet. The extension scores reviews locally via the Chrome Prompt API (stubbed heuristics today) and requests payouts from the Node.js backend, which executes ERC-20 transfers.
+Review-to-Earn transforms how online reviews build trust in digital commerce.
+ When shoppers leave reviews on marketplaces like Etsy, eBay, or Amazon, our Chrome extension uses AI to evaluate review quality and authenticity — rewarding honest, helpful reviewers with PYUSD micro-payments on-chain.
+Built on the Ethereum Sepolia testnet, the system combines:
+AI sentiment & spam detection using OpenAI models,
+
+Smart contracts for escrowed PYUSD campaigns,
+
+Off-chain oracle signatures for instant verified payouts, and
+
+Programmable microtransactions leveraging PayPal’s PYUSD token.
+
+Brands can create campaigns, deposit budgets, and automatically reward reviewers without intermediaries — bringing transparency, fairness, and crypto-native incentives to e-commerce feedback loops.
+
 
 ## Prerequisites
 - Node.js 18+
