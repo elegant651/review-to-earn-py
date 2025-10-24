@@ -1,10 +1,11 @@
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
-import * as dotenv from "dotenv";
+import type { HardhatUserConfig } from "hardhat/config";
+import hardhatToolboxMochaEthers from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
+import dotenv from "dotenv";
 
 dotenv.config({ path: "../apps/backend/.env" });
 
 const config: HardhatUserConfig = {
+  plugins: [hardhatToolboxMochaEthers],
   solidity: {
     version: "0.8.20",
     settings: {
@@ -21,8 +22,13 @@ const config: HardhatUserConfig = {
     artifacts: "./artifacts",
   },
   networks: {
-    hardhat: {},
+    hardhat: {
+      type: "edr-simulated",
+      chainType: "l1",
+    },
     sepolia: {
+      type: "http",
+      chainType: "l1",
       url: process.env.SEPOLIA_RPC_URL || "",
       accounts: process.env.REWARDER_PRIVATE_KEY
         ? [process.env.REWARDER_PRIVATE_KEY]
